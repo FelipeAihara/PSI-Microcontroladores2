@@ -52,10 +52,8 @@ void main(void)
         // Toggle do LED usando a nova API
         gpio_pin_toggle_dt(&led0);
         gpio_pin_toggle_dt(&led1);
-        k_msleep(350);
+        k_msleep(500);
         gpio_pin_toggle_dt(&led0);
-        k_msleep(350);
-        gpio_pin_toggle_dt(&led0);
-        k_msleep(350);
+        k_msleep(500);
     }
 }
