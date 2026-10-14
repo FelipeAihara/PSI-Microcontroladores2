@@ -73,6 +73,6 @@ const struct _isr_table_entry __sw_isr_table _sw_isr_table[32] = {
 	{(const void *)0x0, (ISR)z_irq_spurious}, /* 27 */
 	{(const void *)0x0, (ISR)z_irq_spurious}, /* 28 */
 	{(const void *)0x0, (ISR)z_irq_spurious}, /* 29 */
-	{(const void *)0x30cc, (ISR)0x2993}, /* 30 */
-	{(const void *)0x3078, (ISR)0x2993}, /* 31 */
+	{(const void *)0x313c, (ISR)0x2a03}, /* 30 */
+	{(const void *)0x30e8, (ISR)0x2a03}, /* 31 */
 };
