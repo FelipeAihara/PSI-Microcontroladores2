@@ -1,0 +1,60 @@
+cmake:
+  application:
+    configuration-dir: '/home/fyaih/programacao/projetos/zephyrproject/workspace/projects/uC2/PSI-Microcontroladores2-Aula01'
+    source-dir: '/home/fyaih/programacao/projetos/zephyrproject/workspace/projects/uC2/PSI-Microcontroladores2-Aula01'
+  board:
+    name: 'frdm_kl25z'
+    path:
+     - '/home/fyaih/programacao/projetos/zephyrproject/zephyr/boards/nxp/frdm_kl25z'
+    qualifiers: 'mkl25z4'
+    revision: ''
+  devicetree:
+    bindings-dirs:
+     - '/home/fyaih/programacao/projetos/zephyrproject/zephyr/dts/bindings'
+    files:
+     - '/home/fyaih/programacao/projetos/zephyrproject/zephyr/boards/nxp/frdm_kl25z/frdm_kl25z.dts'
+    include-dirs:
+     - '/home/fyaih/programacao/projetos/zephyrproject/modules/hal/ambiq/dts'
+     - '/home/fyaih/programacao/projetos/zephyrproject/modules/hal/atmel/include'
+     - '/home/fyaih/programacao/projetos/zephyrproject/modules/hal/bouffalolab/include'
+     - '/home/fyaih/programacao/projetos/zephyrproject/modules/hal/bouffalolab/include/zephyr'
+     - '/home/fyaih/programacao/projetos/zephyrproject/modules/hal/gigadevice/include'
+     - '/home/fyaih/programacao/projetos/zephyrproject/modules/hal/infineon/dts'
+     - '/home/fyaih/programacao/projetos/zephyrproject/modules/hal/microchip/include'
+     - '/home/fyaih/programacao/projetos/zephyrproject/modules/hal/microchip/dts'
+     - '/home/fyaih/programacao/projetos/zephyrproject/modules/hal/nuvoton/dts'
+     - '/home/fyaih/programacao/projetos/zephyrproject/modules/hal/nxp/dts'
+     - '/home/fyaih/programacao/projetos/zephyrproject/modules/hal/stm32/dts'
+     - '/home/fyaih/programacao/projetos/zephyrproject/modules/hal/ti/dts'
+     - '/home/fyaih/programacao/projetos/zephyrproject/zephyr/include'
+     - '/home/fyaih/programacao/projetos/zephyrproject/zephyr/include/zephyr'
+     - '/home/fyaih/programacao/projetos/zephyrproject/zephyr/dts/common'
+     - '/home/fyaih/programacao/projetos/zephyrproject/zephyr/dts/vendor'
+     - '/home/fyaih/programacao/projetos/zephyrproject/zephyr/dts/tricore'
+     - '/home/fyaih/programacao/projetos/zephyrproject/zephyr/dts/rx'
+     - '/home/fyaih/programacao/projetos/zephyrproject/zephyr/dts/x86'
+     - '/home/fyaih/programacao/projetos/zephyrproject/zephyr/dts/xtensa'
+     - '/home/fyaih/programacao/projetos/zephyrproject/zephyr/dts/sparc'
+     - '/home/fyaih/programacao/projetos/zephyrproject/zephyr/dts/riscv'
+     - '/home/fyaih/programacao/projetos/zephyrproject/zephyr/dts/posix'
+     - '/home/fyaih/programacao/projetos/zephyrproject/zephyr/dts/arm64'
+     - '/home/fyaih/programacao/projetos/zephyrproject/zephyr/dts/arm'
+     - '/home/fyaih/programacao/projetos/zephyrproject/zephyr/dts/arc'
+     - '/home/fyaih/programacao/projetos/zephyrproject/zephyr/dts'
+  kconfig:
+    files:
+     - '/home/fyaih/programacao/projetos/zephyrproject/zephyr/boards/nxp/frdm_kl25z/frdm_kl25z_defconfig'
+     - '/home/fyaih/programacao/projetos/zephyrproject/workspace/projects/uC2/PSI-Microcontroladores2-Aula01/prj.conf'
+    user-files:
+     - '/home/fyaih/programacao/projetos/zephyrproject/workspace/projects/uC2/PSI-Microcontroladores2-Aula01/prj.conf'
+  toolchain:
+    name: 'zephyr'
+    path: '/home/fyaih/zephyr-sdk-1.0.1'
+  zephyr:
+    version: '4.5.0-rc1'
+    zephyr-base: '/home/fyaih/programacao/projetos/zephyrproject/zephyr'
+version: '0.1.0'
+west:
+  command: '/home/fyaih/programacao/projetos/zephyrproject/.venv/bin/west build -p always -b frdm_kl25z'
+  topdir: '/home/fyaih/programacao/projetos/zephyrproject'
+  version: '1.5.0'
