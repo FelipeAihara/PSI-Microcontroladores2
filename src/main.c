@@ -48,12 +48,14 @@ void main(void)
         return;
     }
 
-
     while (1) {
         // Toggle do LED usando a nova API
         gpio_pin_toggle_dt(&led0);
-        k_msleep(650);
         gpio_pin_toggle_dt(&led1);
+        k_msleep(350);
+        gpio_pin_toggle_dt(&led0);
+        k_msleep(350);
+        gpio_pin_toggle_dt(&led0);
         k_msleep(350);
     }
 }
