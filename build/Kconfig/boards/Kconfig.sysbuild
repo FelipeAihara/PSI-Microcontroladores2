@@ -1,2 +1,0 @@
-# Load Sysbuild board Kconfig descriptions.
-osource "/home/fyaih/programacao/projetos/zephyrproject/zephyr/boards/nxp/frdm_kl25z/Kconfig.sysbuild"
