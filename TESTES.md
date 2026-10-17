@@ -1,33 +1,6 @@
 # Planejamento de Testes: Atividade Baremetal
 
-Placa: FRDM-KL25Z | Zephyr 4.2 | Branch: `baremetal`
-
-## Definições adotadas (leia antes de testar)
-
-O enunciado não define "piscar a cada X". Este plano adota:
-
-- **"Piscar a cada T"** = o LED **muda de estado (toggle) a cada T**. Ou seja, um ciclo completo (aceso + apagado) dura 2T.
-- **LED A** = `led0` do devicetree: toggle a cada **1000 ms** (ciclo completo de 2 s).
-- **LED B** = `led1` do devicetree: toggle a cada **500 ms** (ciclo completo de 1 s).
-
-Se o professor definir "piscar" como ciclo completo de T, divida os intervalos esperados por 2 (A = 500 ms, B = 250 ms).
-
-## Pré-requisitos
-
-- Placa conectada e visível no WSL (`lsusb` mostra `0d28:0204`). Funciona no Windows também.
-- `pyocd` instalado.
-- Miniterm ou outro monitor serial em `/dev/ttyACM0`, 115200 8N1.
-- O código imprime um log a cada toggle no formato:
-  `LED A toggle t=<uptime em ms>` e `LED B toggle t=<uptime em ms>`.
-- Cronômetro ou celular com gravação de vídeo (para os testes visuais).
-
-## Convenções
-
-- **Tolerância serial:** ±20 ms por intervalo (medido pelos timestamps de `k_uptime_get_32()`).
-- **Tolerância visual:** ±0,5 s em 10 s de observação.
-- **Aprovado** = todos os critérios do teste atendidos. Qualquer desvio = **Reprovado** (registrar o valor medido).
-
-## Testes
+Placa: FRDM-KL25Z | Branch: `baremetal`
 
 ### T1: Build limpo
 
@@ -63,14 +36,23 @@ Se o professor definir "piscar" como ciclo completo de T, divida os intervalos e
 - **Resultado esperado:** LED A muda de estado 10 vezes, LED B 20 vezes em 10 s.
 - **Critério:** contagem dentro de ±1 toggle.
 
+### T5: Verificação pelo log
+
+- **Objetivo:** confirmar que cada LED piscou no instante certo, de acordo com seu período configurado.
+- **Procedimento:**
+  1. Abrir `demo_log.txt` (ou `desafio_log.txt`, para o desafio) e observar os timestamps `[xx ms]` de cada linha.
+- **Resultado esperado:** os timestamps de cada LED crescem de forma consistente com o período configurado para ele (ex: ~500ms entre toggles do `led0` e ~1000ms entre toggles do `led1` no `demo_log.txt`).
+- **Critério:** nenhum desvio grosseiro entre timestamps consecutivos do mesmo LED em relação ao período esperado.
+
 ## Registro de execução
 
-| Teste | Resultado (Aprovado/Reprovado) | Valor medido | Observações |
-|-------|-------------------------------|--------------|-------------|
+| Teste | Resultado (Aprovado/Reprovado) 
+|-------|-------------------------------|
 | T1 | | | |
 | T2 | | | |
 | T3 | | | |
 | T4 | | | |
+| T5 | | | |
 
 ## Validação pelo par
 

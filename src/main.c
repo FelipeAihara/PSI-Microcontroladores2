@@ -19,6 +19,31 @@ static const struct gpio_dt_spec led1 = GPIO_DT_SPEC_GET(LED1_NODE, gpios);
 #error "Unsupported board: led1 devicetree alias is not defined"
 #endif
 
+void blink_led_demo() {
+    printk("[%lld ms] Piscando LED (500ms)!\n", k_uptime_get());
+    gpio_pin_toggle_dt(&led0);
+    printk("[%lld ms] Piscando LED (1000ms)!\n", k_uptime_get());
+    gpio_pin_toggle_dt(&led1);
+    k_msleep(500);
+    printk("[%lld ms] Piscando LED (500ms)!\n", k_uptime_get());
+    gpio_pin_toggle_dt(&led0);
+    k_msleep(500);
+}
+
+void blink_led_desafio() {
+    for (int i = 0; i < 140; i++) {
+        if (i % 7 == 0) {
+            printk("[%lld ms] Piscando LED (350ms)!\n", k_uptime_get());
+            gpio_pin_toggle_dt(&led0);
+        }
+        if (i % 20 == 0) {
+            printk("[%lld ms] Piscando LED (1000ms)!\n", k_uptime_get());
+            gpio_pin_toggle_dt(&led1);
+        } 
+        k_msleep(50);
+    }
+}
+
 
 void main(void)
 {
@@ -49,11 +74,7 @@ void main(void)
     }
 
     while (1) {
-        // Toggle do LED usando a nova API
-        gpio_pin_toggle_dt(&led0);
-        gpio_pin_toggle_dt(&led1);
-        k_msleep(500);
-        gpio_pin_toggle_dt(&led0);
-        k_msleep(500);
+        // blink_led_demo();
+        blink_led_desafio();
     }
 }
