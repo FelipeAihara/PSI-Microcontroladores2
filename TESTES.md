@@ -1,95 +1,59 @@
-# Plano de Testes — Pisca-LED com Threads (Zephyr)
+# Planejamento de Testes: Atividade Baremetal
 
-Plano de testes para verificação do correto funcionamento do firmware de
-piscar dois LEDs usando duas threads independentes (`src/main.c`), executado
-na placa Freedom (FRDM-KL25Z) com Zephyr 4.2.
+Placa: FRDM-KL25Z | Branch: `baremetal`
 
-## Ambiente de teste
+### T1: Build limpo
 
-- **Placa:** Freedom FRDM-KL25Z
-- **Zephyr:** versão 4.2
-- **Conexão:** cabo USB (alimentação + serial)
-- **Terminal serial:** `minicom` ou
-  equivalente, configurado para a baud rate padrão do projeto (115200 bps)
-- **Build:** `west build -b frdm_kl25z .`
-- **Flash:** `west flash -r pyocd`
+- **Objetivo:** garantir que o projeto compila do zero.
+- **Procedimento:**
+  1. `west build -p auto -b frdm_kl25z`
+- **Resultado esperado:** build termina sem erros e sem warnings do código da aplicação (`src/main.c`).
+- **Critério:** código de saída 0.
 
-## Resumo do comportamento esperado
+### T2: Gravação
 
-| Thread | LED | Periodicidade do toggle | Prioridade |
-|---|---|---|---|
-| `thread_blink_led_1000ms` | `led0` | 1000 ms | 5 |
-| `thread_blink_led_500ms` | `led1` | 500 ms | 6 |
+- **Objetivo:** garantir que o firmware é gravado na placa.
+- **Procedimento:**
+  1. `west flash -r pyocd`
+- **Resultado esperado:** flash conclui sem erro e a placa reinicia sozinha.
+- **Critério:** nenhuma mensagem de erro; LEDs começam a piscar após a gravação.
 
-Cada toggle alterna o estado do LED (aceso ↔ apagado). Logo, cada LED
-completa um ciclo visual completo (aceso + apagado) em 2× o período de
-toggle: `led0` pisca a cada ~2000 ms, `led1` a cada ~1000 ms.
+### T3: Mensagem de boot
 
----
+- **Objetivo:** confirmar que a saída serial funciona.
+- **Procedimento:**
+  1. Abrir `python -m serial.tools.miniterm /dev/ttyACM0 115200`.
+  2. Apertar o botão **reset** da placa.
+- **Resultado esperado:** aparece a mensagem de início (`Iniciando`).
+- **Critério:** mensagem visível em até 2 s após o reset.
 
-## Caso de Teste 1 — Boot e inicialização sem erros
+### T4: Verificação visual
 
-**Objetivo:** verificar que os dois LEDs são corretamente inicializados.
+- **Objetivo:** confirmar que o comportamento físico bate com o log.
+- **Procedimento:**
+  1. Reset na placa.
+  2. Observar (ou gravar em vídeo) por 10 s, contando mudanças de estado de cada LED.
+- **Resultado esperado:** LED A muda de estado 10 vezes, LED B 20 vezes em 10 s.
+- **Critério:** contagem dentro de ±1 toggle.
 
-**Procedimento:**
-1. Compilar e gravar o firmware na placa.
-2. Abrir o terminal serial antes de resetar a placa.
-3. Resetar a placa (botão reset ou reconectar USB).
+### T5: Verificação pelo log
 
-**Resultado esperado:**
-- Nenhuma mensagem `Error: LED device ... is not ready` é impressa.
-- Nenhuma mensagem `Error %d: failed to configure LED pin` é impressa.
-- O firmware não trava nem reinicia em loop (sem mensagens de fault/crash).
+- **Objetivo:** confirmar que cada LED piscou no instante certo, de acordo com seu período configurado.
+- **Procedimento:**
+  1. Abrir `demo_log.txt` (ou `desafio_log.txt`, para o desafio) e observar os timestamps `[xx ms]` de cada linha.
+- **Resultado esperado:** os timestamps de cada LED crescem de forma consistente com o período configurado para ele (ex: ~500ms entre toggles do `led0` e ~1000ms entre toggles do `led1` no `demo_log.txt`).
+- **Critério:** nenhum desvio grosseiro entre timestamps consecutivos do mesmo LED em relação ao período esperado.
 
----
+## Registro de execução
 
-## Caso de Teste 2 — LED0 pisca com período de 1000 ms
+| Teste | Resultado (Aprovado/Reprovado) 
+|-------|-------------------------------|
+| T1 | | | |
+| T2 | | | |
+| T3 | | | |
+| T4 | | | |
+| T5 | | | |
 
-**Objetivo:** confirmar que `led0` alterna de estado a cada 1000 ms.
+## Validação pelo par
 
-**Procedimento:**
-1. Observar visualmente o LED0 por pelo menos 10 segundos.
-2. Em paralelo, observar as mensagens `[... ms] Piscando LED (1000ms)!` no
-   terminal serial.
-
-**Resultado esperado:**
-- O LED0 alterna aceso/apagado visivelmente, completando um ciclo
-  (acende + apaga) a cada ~2 segundos.
-- A cada mensagem `Piscando LED (1000ms)!` impressa, o LED0 muda de estado
-  imediatamente em seguida.
-- A diferença entre os timestamps (`k_uptime_get()`) de mensagens
-  consecutivas dessa thread é de aproximadamente 1000 ms (tolerância
-  sugerida: ±50 ms, considerando jitter do escalonador).
-- Em 10 segundos de observação, aproximadamente 10 mensagens dessa thread
-  são impressas.
-
----
-
-## Caso de Teste 3 — LED1 pisca com período de 500 ms
-
-**Objetivo:** confirmar que `led1` alterna de estado a cada 500 ms.
-
-**Procedimento:** idêntico ao Caso de Teste 2, trocando `led0`/1000ms por
-`led1`/500ms.
-
-**Resultado esperado:**
-- O LED1 alterna aceso/apagado visivelmente, completando um ciclo a cada
-  ~1 segundo (piscada perceptivelmente mais rápida que o LED0).
-- A diferença entre timestamps consecutivos da thread `blink_led_500ms` é
-  de aproximadamente 500 ms (tolerância sugerida: ±50 ms).
-- Em 10 segundos de observação, aproximadamente 20 mensagens dessa thread
-  são impressas.
-
----
-
-## Registro dos resultados
-
-Para cada execução dos testes, registrar em comentário/issue da PR:
-
-- Placa e ambiente utilizados.
-- Data/hora do teste.
-- Para cada caso de teste: **passou / falhou**, com observações
-  (ex.: timestamps coletados, prints do terminal serial, vídeo/foto do LED
-  piscando).
-- Caso algum teste falhe, descrever o comportamento observado e divergência
-  em relação ao esperado.
+O avaliador deve executar os testes acima, preencher a tabela de registro em um comentário do PR e registrar explicitamente que a validação foi realizada, mesmo que tudo passe.
