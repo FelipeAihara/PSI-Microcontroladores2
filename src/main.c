@@ -21,7 +21,6 @@ static const struct gpio_dt_spec led1 = GPIO_DT_SPEC_GET(LED1_NODE, gpios);
 #error "Unsupported board: led1 devicetree alias is not defined"
 #endif
 
-
 void blink_led_1000ms(void *arg1, void *arg2, void *arg3) {
     while (1) {
         printk("[%lld ms] Piscando LED (1000ms)!\n", k_uptime_get());
