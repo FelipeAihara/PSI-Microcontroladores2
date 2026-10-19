@@ -1,0 +1,7 @@
+.pio.pio/
+build/
+build-*/
+.vscode/.browse.c_cpp.db*
+*.elf
+*.hex
+*.bin
