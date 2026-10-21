@@ -1,0 +1,24 @@
+*** Booting Zephyr OS build v4.5.0-rc1-492-ge35b686be50a ***
+=== Demonstração de Preempção com LEDs ===
+Thread A (vermelho): prioridade 5
+Thread B (verde): prioridade 7
+Tempo do início: 15299.08 us, Tempo do fim: 65395.35 us, Tempo de duração: 50096.27 us
+Tempo do início: 1574755.52 us, Tempo do fim: 1624851.04 us, Tempo de duração: 50095.52 us
+Tempo do início: 74621.40 us, Tempo do fim: 3057565.62 us, Tempo de duração: 2982944.23 us
+Tempo do início: 3134448.06 us, Tempo do fim: 3184544.83 us, Tempo de duração: 50096.77 us
+Tempo do início: 4693956.21 us, Tempo do fim: 4744051.73 us, Tempo de duração: 50095.52 us
+Tempo do início: 6253556.17 us, Tempo do fim: 6303651.71 us, Tempo de duração: 50095.54 us
+Tempo do início: 4066948.17 us, Tempo do fim: 7109283.69 us, Tempo de duração: 3042335.52 us
+Tempo do início: 7813148.19 us, Tempo do fim: 7863244.75 us, Tempo de duração: 50096.56 us
+Tempo do início: 9372356.23 us, Tempo do fim: 9422451.79 us, Tempo de duração: 50095.56 us
+Tempo do início: 10931856.17 us, Tempo do fim: 10981951.71 us, Tempo de duração: 50095.54 us
+Tempo do início: 8118848.10 us, Tempo do fim: 11161270.46 us, Tempo de duração: 3042422.35 us
+Tempo do início: 12491755.52 us, Tempo do fim: 12541851.04 us, Tempo de duração: 50095.52 us
+Tempo do início: 14051556.17 us, Tempo do fim: 14101651.71 us, Tempo de duração: 50095.54 us
+Tempo do início: 12171048.15 us, Tempo do fim: 15213885.46 us, Tempo de duração: 3042837.31 us
+Tempo do início: 15611348.27 us, Tempo do fim: 15661445.06 us, Tempo de duração: 50096.79 us
+Tempo do início: 17171056.21 us, Tempo do fim: 17221151.73 us, Tempo de duração: 50095.52 us
+Tempo do início: 18730955.52 us, Tempo do fim: 18781051.04 us, Tempo de duração: 50095.52 us
+Tempo do início: 16223648.17 us, Tempo do fim: 19266503.65 us, Tempo de duração: 3042855.48 us
+Tempo do início: 20290856.17 us, Tempo do fim: 20340951.71 us, Tempo de duração: 50095.54 us
+
