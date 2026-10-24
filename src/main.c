@@ -4,6 +4,8 @@
 #include <zephyr/device.h>
 #include <zephyr/logging/log.h>
 
+LOG_MODULE_REGISTER(meu_modulo, LOG_LEVEL_INF);
+
 // --- Configuração de LEDs via DeviceTree ---
 #define LED_A_NODE DT_ALIAS(led0)  // LED verde
 #define LED_B_NODE DT_ALIAS(led2)  // LED vermelho
@@ -14,8 +16,8 @@ static const struct gpio_dt_spec ledB = GPIO_DT_SPEC_GET(LED_B_NODE, gpios);
 // --- Prioridades e tempos ---
 #define PRIO_THREAD_A 5   // Maior prioridade (número menor)
 #define PRIO_THREAD_B 7   // Menor prioridade
-#define TEMPO_A_MS   1500   // Thread A dorme
-#define TEMPO_B_MS   1000   // Thread B dorme
+#define TEMPO_A_MS   1500   // Thread A dorme (reduzido temporariamente p/ captura de trace — original: 1500)
+#define TEMPO_B_MS   1000   // Thread B dorme (reduzido temporariamente p/ captura de trace — original: 1000)
 
 // ----------------------------------------------------
 // THREAD A — Tarefa curta, alta prioridade
@@ -37,9 +39,13 @@ void thread_A(void *p1, void *p2, void *p3)
         double start_us = (double)start_cycles / 48.0;
         double end_us = (double)end_cycles / 48.0;
         double elapsed_us = (double)elapsed / 48.0;  // resultado em microsegundos
-        printk("Tempo do início: %.2f us, ", start_us);
-        printk("Tempo do fim: %.2f us, ", end_us);
-        printk("Tempo de duração: %.2f us\n", elapsed_us);
+        // printk("Tempo do início: %.2f us, ", start_us);
+        // printk("Tempo do fim: %.2f us, ", end_us);
+        // printk("Tempo de duração: %.2f us\n", elapsed_us);
+        // LOG_INF("Tempo do início: %.2f us, ", start_us);
+        // LOG_INF("Tempo do fim: %.2f us, ", end_us);
+        // LOG_INF("Tempo de duração: %.2f us\n", elapsed_us);
+        
    
         k_msleep(TEMPO_A_MS);       // Dorme — libera CPU
     }
@@ -69,9 +75,12 @@ void thread_B(void *p1, void *p2, void *p3)
         double start_us = (double)start_cycles / 48.0;
         double end_us = (double)end_cycles / 48.0;
         double elapsed_us = (double)elapsed / 48.0;  // resultado em microsegundos
-        printk("Tempo do início: %.2f us, ", start_us);
-        printk("Tempo do fim: %.2f us, ", end_us);
-        printk("Tempo de duração: %.2f us\n", elapsed_us);
+        // printk("Tempo do início: %.2f us, ", start_us);
+        // printk("Tempo do fim: %.2f us, ", end_us);
+        // printk("Tempo de duração: %.2f us\n", elapsed_us);
+        //LOG_INF("Tempo do início: %.2f us, ", start_us);
+        //LOG_INF("Tempo do fim: %.2f us, ", end_us);
+        //LOG_INF("Tempo de duração: %.2f us\n", elapsed_us);
 
         k_msleep(TEMPO_B_MS);       // Dorme um pouco
     }
