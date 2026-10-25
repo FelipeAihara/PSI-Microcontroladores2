@@ -9,9 +9,12 @@ LOG_MODULE_REGISTER(meu_modulo, LOG_LEVEL_INF);
 // --- Configuração de LEDs via DeviceTree ---
 #define LED_A_NODE DT_ALIAS(led0)  // LED verde
 #define LED_B_NODE DT_ALIAS(led2)  // LED vermelho
+#define BUTTON_NODE DT_NODELABEL(user_button_0)
 
 static const struct gpio_dt_spec ledA = GPIO_DT_SPEC_GET(LED_A_NODE, gpios);
 static const struct gpio_dt_spec ledB = GPIO_DT_SPEC_GET(LED_B_NODE, gpios);
+static const struct gpio_dt_spec button = GPIO_DT_SPEC_GET(BUTTON_NODE, gpios);
+static struct gpio_callback button_cb_data;
 
 // --- Prioridades e tempos ---
 #define PRIO_THREAD_A 5   // Maior prioridade (número menor)
@@ -86,6 +89,15 @@ void thread_B(void *p1, void *p2, void *p3)
     }
 }
 
+// ISR
+void button_isr(const struct device *dev, struct gpio_callback *cb, uint32_t pins)
+{
+    LOG_INF("Nome: Interrupcao");
+    LOG_INF("Tempo do início: %.2f us", k_uptime_get() / 48.0);
+    LOG_INF("Tempo do fim: %.2f us", k_uptime_get() / 48.0);
+    LOG_INF("Tempo de duração: %.2f us\n", 0.0);
+}
+
 // ----------------------------------------------------
 // Definição das threads
 // ----------------------------------------------------
@@ -105,6 +117,7 @@ void main(void)
     }
     gpio_pin_configure_dt(&ledA, GPIO_OUTPUT_INACTIVE);
     gpio_pin_configure_dt(&ledB, GPIO_OUTPUT_INACTIVE);
+    gpio_pin_configure_dt(&button, GPIO_INPUT | GPIO_PULL_UP);
 
     printk("=== Demonstração de Preempção com LEDs ===\n");
     printk("Thread A (vermelho): prioridade %d\n", PRIO_THREAD_A);
