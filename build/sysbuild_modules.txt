@@ -1,1 +1,0 @@
-"mcuboot":"/home/fyaih/programacao/projetos/zephyrproject/bootloader/mcuboot":"/home/fyaih/programacao/projetos/zephyrproject/bootloader/mcuboot/boot/zephyr/sysbuild"
