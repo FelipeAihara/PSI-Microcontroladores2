@@ -4,6 +4,8 @@ Atividade prática inicial da aula 2 da disciplina Microcontroladores 2 (PSI).
 
 ## Notas
 
+- para fazer o log das threads, eu modifiquei a função z_sched_usage_stop (zephyr/kernel/usage.c:102). Ela sempre roda imediatamente antes de uma thread
+parar de executar e tem a informação de quando a thread começou a rodar, tornando-a a função apropriada para o exercício em questão 
 - para gerar o grafico, rodar: python3 plotar_grafico.py logging_{CASO}.txt
 
 ## Perguntas e Respostas
