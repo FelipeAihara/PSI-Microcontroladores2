@@ -1,0 +1,27 @@
+empty_file.o: \
+ /home/fyaih/programacao/projetos/zephyrproject/zephyr/misc/empty_file.c \
+ /home/fyaih/programacao/projetos/zephyrproject/zephyr/boards/nxp/frdm_kl25z/frdm_kl25z.dts \
+ /home/fyaih/programacao/projetos/zephyrproject/zephyr/dts/arm/nxp/kinetis/kl2x/nxp_kl25z.dtsi \
+ /home/fyaih/programacao/projetos/zephyrproject/zephyr/dts/common/mem.h \
+ /home/fyaih/programacao/projetos/zephyrproject/zephyr/dts/common/freq.h \
+ /home/fyaih/programacao/projetos/zephyrproject/zephyr/dts/arm/armv6-m.dtsi \
+ /home/fyaih/programacao/projetos/zephyrproject/zephyr/dts/common/skeleton.dtsi \
+ /home/fyaih/programacao/projetos/zephyrproject/zephyr/include/zephyr/dt-bindings/adc/adc.h \
+ /home/fyaih/programacao/projetos/zephyrproject/zephyr/include/zephyr/dt-bindings/dt-util.h \
+ /home/fyaih/programacao/projetos/zephyrproject/zephyr/include/zephyr/sys/util_macro.h \
+ /home/fyaih/programacao/projetos/zephyrproject/zephyr/include/zephyr/sys/util_internal.h \
+ /home/fyaih/programacao/projetos/zephyrproject/zephyr/include/zephyr/sys/util_loops.h \
+ /home/fyaih/programacao/projetos/zephyrproject/zephyr/include/zephyr/sys/util_listify.h \
+ /home/fyaih/programacao/projetos/zephyrproject/zephyr/include/zephyr/sys/util_internal_is_eq.h \
+ /home/fyaih/programacao/projetos/zephyrproject/zephyr/include/zephyr/sys/util_internal_util_inc.h \
+ /home/fyaih/programacao/projetos/zephyrproject/zephyr/include/zephyr/sys/util_internal_util_dec.h \
+ /home/fyaih/programacao/projetos/zephyrproject/zephyr/include/zephyr/sys/util_internal_util_x2.h \
+ /home/fyaih/programacao/projetos/zephyrproject/zephyr/include/zephyr/dt-bindings/clock/kinetis_sim.h \
+ /home/fyaih/programacao/projetos/zephyrproject/zephyr/include/zephyr/dt-bindings/clock/kinetis_mcg.h \
+ /home/fyaih/programacao/projetos/zephyrproject/zephyr/include/zephyr/dt-bindings/gpio/gpio.h \
+ /home/fyaih/programacao/projetos/zephyrproject/zephyr/include/zephyr/dt-bindings/i2c/i2c.h \
+ /home/fyaih/programacao/projetos/zephyrproject/zephyr/boards/nxp/frdm_kl25z/frdm_kl25z-pinctrl.dtsi \
+ /home/fyaih/programacao/projetos/zephyrproject/modules/hal/nxp/dts/nxp/kinetis/kl2x/pinctrl/MKL25Z128VLK4-pinctrl.h \
+ /home/fyaih/programacao/projetos/zephyrproject/modules/hal/nxp/dts/nxp/kinetis/kl2x/pinctrl/MKL27Z256VLH4-pinctrl.h \
+ /home/fyaih/programacao/projetos/zephyrproject/zephyr/include/zephyr/dt-bindings/gpio/arduino-header-r3.h \
+ /home/fyaih/programacao/projetos/zephyrproject/zephyr/include/zephyr/dt-bindings/input/input-event-codes.h
