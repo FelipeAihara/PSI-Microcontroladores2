@@ -1,50 +1,60 @@
-# PSI-Microcontroladores2-Aula01
+# PSI-Microcontroladores2-Aula02
 
-Atividade prática inicial da aula 1 da disciplina Microcontroladores 2 (PSI).
+Atividade prática inicial da aula 2 da disciplina Microcontroladores 2 (PSI).
 
-## Descrição
+## Notas
 
-O firmware em `src/main.c` roda baremetal (sem threads) na placa FRDM-KL25Z com Zephyr e controla dois LEDs (`led0` e `led1`) via GPIO, alternando seus estados em intervalos fixos usando `k_msleep`. Cada troca de estado é registrada via `printk` com o timestamp (`k_uptime_get()`) e o período configurado daquele LED. Existem dois modos de piscar, selecionados em `main()`:
+- para gerar o grafico, rodar: python3 plotar_grafico.py logging_{CASO}.txt
 
-- `blink_led_demo()`: `led0` pisca a cada 500 ms e `led1` a cada 1000 ms.
-- `blink_led_desafio()`: `led0` pisca a cada 350 ms e `led1` a cada 1000 ms.
+## Perguntas e Respostas
 
-O script `calcular_jitter.py` lê o log serial (`demo_log.txt`/`desafio_log.txt`), extrai os timestamps de cada LED e calcula o jitter (diferença entre o instante medido e o instante nominal esperado, dado o período e o offset inicial). Ele imprime o número de amostras e o jitter máximo de cada LED, além de gerar um gráfico (`.png`) de jitter em função do tempo para os dois LEDs. Para testá-lo, rodar no terminal: 'python calcular_jitter.py aaa_log.txt'
+1. Utilize o Systick  para medir o tempo de cada thread e faça um diagrama temporal da execução do código fornecido para diferentes casos de prioridade 
+e tempos (`k_sleep()`) e explique cada caso. 
+2. O que acontece se removermos o `k_sleep()` de uma das threads, explique? Se as threads têm prioridades iguais, qual será executada primeiro?
+Como funciona threads cooperativas (prioridade -1), explique?
+3. É possível que uma thread nunca seja executada? Em qual combinação de prioridade/tempo isso acontece? Como é conhecido isso?
 
-- OBS.: para gerar os arquivos de log, eu rodei o seguinte comando (Linux): 'pyserial-miniterm /dev/ttyACM0 115200 | tee aaa_log.txt
+Caso 1 - PRIO_THREAD_A < PRIO_THREAD_B: notamos que, pelo fato da A thread ter maior prioridade para executar (que significa nível de prioridade 
+menor no Zephyr), ela preempta a thread B periodicamente. Assim, como a thread A é relativamente rápida (não impede a execução da thread B), 
+os requisitos temporais desse programa são cumpridos (nenhuma thread deixa de ser executada nos tempos especificados).
 
-Registre sua evolução utilizando os checklists abaixo por meio de commits com mensagens descritivas:
+Caso 2 - PRIO_THREAD_A > PRIO_THREAD_B: nesse caso, os requisitos temporais do programa não são cumpridos. Isso fica claro no gráfico. A princípio, a
+thread A deveria rodar a cada 1.5s. Entretanto, isso não ocorre. Para entender o porquê disso, é necessário entender como o escalonador do 
+Zephyr funciona. Quando o timer do k_msleep da thread A expira, ocorre uma interrupção que marca a thread A como pronta (mesmo que a thread B estivesse
+rodando antes, já que interrupções têm prioridades maiores que threads). Logo após essa interrupção, o escalonador é chamado para ver qual thread deve 
+rodar. Como a thread B tem maior prioridade, apesar da thread A estar pronta, ela não é chamada.
 
-### Setup (individual)
-- [ ] Possuo VSCode instalado
-- [ ] Possuo MCUXpresso instalado
-- [ ] Possuo PlatformIO instalado
-- [ ] Possuo cabo USB compatível com Placa Freedom
-- [ ] Possuo Placa Freedom operacional
-- [ ] Possuo Zephyr atualizado para versão 4.2
+Caso 3 - PRIO_THREAD_A = PRIO_THREAD_B: quando a prioridade da thread A é igual à prioridade da thread B, algo fascinante ocorre: quando ambas estão
+prontas, elas dividem o tempo que ocupam o processador. Isso fica claro no diagrama (pegue, por exemplo, a segunda execução da thread A: ao
+contrário do que ocorre no caso 1, ela não é executada de uma vez: ela começa a executar, depois a thread B preempta ela, e só depois ela finaliza sua
+execução). O mecanismo pelo qual isso ocorre é muito sutil. Quando duas threads de mesma prioridade estão prontas para executar, o escalonador decide
+qual delas deveria rodar por meio do timeslicing. Isto é: primeiro, o escalonador deixa uma das threads (a que foi definida primeiro) rodar por um certo
+período de tempo. Quando esse período expira, o escalonador então dá o controle à outra thread e assim por diante. Vale notar que o período em questão é 
+definido no símbolo CONFIG_TIMESLICE_SIZE do Kconfig. Indo no meu arquivo build/zephyr/.config, encontro: CONFIG_TIMESLICE_SIZE=20, que é exatamente a 
+quantidade de tempo que a thread A roda antes de ser preemptada pela thread B. É possível ser isso no log:
 
-Materiais para consulta: https://frdm-kl25z-com-zephyr-rtos.super.site/instalao, https://frdm-kl25z-com-zephyr-rtos.super.site/tutoriais/1-exemplo-pisca-led-rtos/atualizao-para-o-zephyr-42
+[00:00:00.020,000] <inf> os: Nome: a_tid
+[00:00:00.020,000] <inf> os: Tempo do início: 697.02 us
+[00:00:00.020,000] <inf> os: Tempo do fim: 20688.71 us
+[00:00:00.020,000] <inf> os: Tempo de duração: 19858.21 us <- Aqui, 20ms!  
 
-### Atividade Baremetal (implementação individual, validação em dupla)
-- [ ] Crie uma branch chamada baremetal
-- [ ] Compile e execute o exemplo de piscar led baremetal na placa Freedom com o Zephyr versão 4.2 (vide [https://frdm-kl25z-com-zephyr-rtos.super.site/tutoriais/2-pisca-led-simples](https://frdm-kl25z-com-zephyr-rtos.super.site/tutoriais/1-exemplo-pisca-led-rtos/atualizao-para-o-zephyr-42)). Dica: Utilize por enquanto somente o led da placa
-- [ ] Faça alterações no código para controlar dois leds: um led deve piscar a cada segundo, e o segundo led deve piscar a cada meio segundo
-- [ ] Desafio: tente fazer com que o primeiro led pisque a cada segundo, e o segundo led pisque a cada 350 ms
-- [ ] Crie um planejamento de testes para verificação do correto funcionamento, detalhando quais são os resultados esperados
-- [ ] Abra uma Pull Request
-- [ ] Seu par irá avaliar a Pull Request: adicionar sugestões em issues ou na discussão do PR (ATENÇÃO: o par deve tentar executar os testes propostos, e mesmo em caso de tudo funcionar, registrar em comentários como a validação foi realizada)
-- [ ] Após as pendências serem resolvidas, seu par irá validar as melhorias e aceitar a PR
+Caso 4 - Removendo o k_sleep da thread A: quando removemos o printk da thread A, nenhum log aparece no terminal. Isso ocorre porque, sem o k_msleep,
+a thread A nunca cede a CPU, o que faz com que as outras threads (como a de logging, que é a responsável por enviar os logs para o terminal) nunca
+tenham a chance de rodar. Isso é conhecido como inanição: quando uma ou mais threads deixam de rodar porque outras monopolizam a CPU. Vale notar que isso
+só ocorre porque a thread A tem a maior prioridade entre todas as threads prontas para executar. Se houvesse uma outra thread de prioridade maior ou 
+igual à thread A, essa outra thread dividiria a CPU com a thread A. 
 
-### Atividade Threads (implementação individual, validação em dupla)
-- [ ] Crie uma branch chamada threads
-- [ ] Compile e execute o exemplo de piscar led com threads na placa Freedom (vide [https://github.com/platformio/platform-freescalekinetis/blob/develop/examples/zephyr-blink/src/main.c e https://frdm-kl25z-com-zephyr-rtos.super.site/tutoriais/1-exemplo-pisca-led-rtos](https://frdm-kl25z-com-zephyr-rtos.super.site/tutoriais/threads-zephyr-42))
-- [ ] Faça alterações no código para controlar dois leds: um led deve piscar a cada segundo, e o segundo led deve piscar a cada meio segundo
-- [ ] Desafio: tente fazer com que o primeiro led pisque a cada segundo, e o segundo led pisque a cada 350 ms
-- [ ] Crie um planejamento de testes para verificação do correto funcionamento, detalhando quais são os resultados esperados
-- [ ] Abra uma Pull Request
-- [ ] Seu par irá avaliar a Pull Request: adicionar sugestões em issues ou na discussão do PR (ATENÇÃO: o par deve tentar executar os testes propostos, e mesmo em caso de tudo funcionar, registrar em comentários como a validação foi realizada)
-- [ ] Após as pendências serem resolvidas, seu par irá validar as melhorias e aceitar a PR
+- OBS.: threads cooperativas são threads que não podem ser preemptadas: elas têm que ativamente ceder o controle da CPU para pararem de serem
+executadas - elas têm que ser cooperativas para que as outras threads possam rodar.
+   
+4. O que acontece com uma interrupção de hardware (ISR)? Implemente um botão (Botão com Interrupção) com interrupção para mostrar o comportamento 
+e prioridade da ISR.
 
-### Desafio (individual)
-- [ ] Explore recursos de debug e faça um arquivo markdown mostrando como estes recursos podem ser úteis na identificação e correção de problemas
-- [ ] Reflita e responda em seu arquivo markdown: qual a diferença entre os recursos de debug e testes? São abordagens complementares?
+Implementando o botão, observamos que a ISR interrompe a thread B (a saber, ela tem prioridade maior que qualquer thread). 
+
+5. Substitua os comandos de printk por comandos com Logging. Inclua mais informações (como os tempos intermediários do timer) que podem ser utilizados 
+para depuração do código. Discuta a diferença entre usar o Logging, printk, printf e debug.
+
+A principal diferença de printf e printk é que o printk é uma versão do Zephyr mais leve do printf. A principal diferença entre o printk e o logging é
+que este tem várias outras opções que o printk não tem - a saber: níveis de severidade, timestamp e deferred mode (a emissão das mensagens é feita
+em um thread separada). Já o debug é algo completamente diferente: ele serve para pausar a execução de verdade e inspecionar o estado do MCU.

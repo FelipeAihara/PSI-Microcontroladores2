@@ -1,0 +1,388 @@
+*** Booting Zephyr OS build v4.5.0-rc3-3-g2a9e8ac155a3 ***
+=== Demonstração de Preempção com LEDs ===
+Thread A (vermelho): prioridade 5
+Thread B (verde): prioridade 5
+[00:00:00.000,000] <inf> os: Nome: main
+[00:00:00.000,000] <inf> os: Tempo do início: 73.83 us
+[00:00:00.000,000] <inf> os: Tempo do fim: 593.88 us
+[00:00:00.000,000] <inf> os: Tempo de duração: 399.12 us
+
+[00:00:00.020,000] <inf> os: Nome: a_tid
+[00:00:00.020,000] <inf> os: Tempo do início: 697.02 us
+[00:00:00.020,000] <inf> os: Tempo do fim: 20688.71 us
+[00:00:00.020,000] <inf> os: Tempo de duração: 19858.21 us
+
+[00:00:00.040,000] <inf> os: Nome: b_tid
+[00:00:00.040,000] <inf> os: Tempo do início: 20822.73 us
+[00:00:00.040,000] <inf> os: Tempo do fim: 40689.44 us
+[00:00:00.040,000] <inf> os: Tempo de duração: 19732.44 us
+
+[00:00:00.060,000] <inf> os: Nome: a_tid
+[00:00:00.060,000] <inf> os: Tempo do início: 40807.62 us
+[00:00:00.060,000] <inf> os: Tempo do fim: 60681.85 us
+[00:00:00.060,000] <inf> os: Tempo de duração: 19747.54 us
+
+[00:00:00.080,000] <inf> os: Nome: b_tid
+[00:00:00.080,000] <inf> os: Tempo do início: 60816.40 us
+[00:00:00.080,000] <inf> os: Tempo do fim: 80689.98 us
+[00:00:00.080,000] <inf> os: Tempo de duração: 19738.77 us
+
+[00:00:00.091,000] <inf> os: Nome: a_tid
+[00:00:00.091,000] <inf> os: Tempo do início: 80825.19 us
+[00:00:00.091,000] <inf> os: Tempo do fim: 91523.15 us
+[00:00:00.091,000] <inf> os: Tempo de duração: 10568.81 us
+
+[00:00:01.591,000] <inf> os: Nome: b_tid
+[00:00:01.591,000] <inf> os: Tempo do início: 91651.92 us
+[00:00:01.591,000] <inf> os: Tempo do fim: 1591599.98 us
+[00:00:01.591,000] <inf> os: Tempo de duração: 1499809.96 us
+
+[00:00:01.611,000] <inf> os: Nome: a_tid
+[00:00:01.611,000] <inf> os: Tempo do início: 1591738.94 us
+[00:00:01.611,000] <inf> os: Tempo do fim: 1611587.73 us
+[00:00:01.611,000] <inf> os: Tempo de duração: 19716.23 us
+
+[00:00:01.631,000] <inf> os: Nome: b_tid
+[00:00:01.631,000] <inf> os: Tempo do início: 1611725.71 us
+[00:00:01.631,000] <inf> os: Tempo do fim: 1631594.33 us
+[00:00:01.631,000] <inf> os: Tempo de duração: 19729.46 us
+
+[00:00:01.651,000] <inf> os: Nome: a_tid
+[00:00:01.651,000] <inf> os: Tempo do início: 1631733.71 us
+[00:00:01.651,000] <inf> os: Tempo do fim: 1651594.48 us
+[00:00:01.651,000] <inf> os: Tempo de duração: 19721.46 us
+
+[00:00:01.671,000] <inf> os: Nome: b_tid
+[00:00:01.671,000] <inf> os: Tempo do início: 1651733.77 us
+[00:00:01.671,000] <inf> os: Tempo do fim: 1671594.10 us
+[00:00:01.671,000] <inf> os: Tempo de duração: 19721.40 us
+
+[00:00:01.682,000] <inf> os: Nome: a_tid
+[00:00:01.682,000] <inf> os: Tempo do início: 1671732.44 us
+[00:00:01.682,000] <inf> os: Tempo do fim: 1682609.50 us
+[00:00:01.682,000] <inf> os: Tempo de duração: 10742.90 us
+
+[00:00:03.027,000] <inf> os: Nome: b_tid
+[00:00:03.027,000] <inf> os: Tempo do início: 1682741.71 us
+[00:00:03.028,000] <inf> os: Tempo do fim: 3027998.35 us
+[00:00:03.028,000] <inf> os: Tempo de duração: 1345115.29 us
+
+[00:00:03.182,000] <inf> os: Nome: logging
+[00:00:03.182,000] <inf> os: Tempo do início: 3028139.35 us
+[00:00:03.182,000] <inf> os: Tempo do fim: 3182695.29 us
+[00:00:03.182,000] <inf> os: Tempo de duração: 154415.73 us
+
+[00:00:03.233,000] <inf> os: Nome: a_tid
+[00:00:03.233,000] <inf> os: Tempo do início: 3182835.15 us
+[00:00:03.233,000] <inf> os: Tempo do fim: 3233145.60 us
+[00:00:03.233,000] <inf> os: Tempo de duração: 50170.17 us
+
+[00:00:03.396,000] <inf> os: Nome: logging
+[00:00:03.396,000] <inf> os: Tempo do início: 3233286.58 us
+[00:00:03.396,000] <inf> os: Tempo do fim: 3396111.15 us
+[00:00:03.396,000] <inf> os: Tempo de duração: 162669.54 us
+
+[00:00:04.027,000] <inf> os: Nome: idle
+[00:00:04.028,000] <inf> os: Tempo do início: 3396252.27 us
+[00:00:04.028,000] <inf> os: Tempo do fim: 4028084.29 us
+[00:00:04.028,000] <inf> os: Tempo de duração: 631693.44 us
+
+[00:00:04.748,000] <inf> os: Nome: b_tid
+[00:00:04.748,000] <inf> os: Tempo do início: 4028217.25 us
+[00:00:04.748,000] <inf> os: Tempo do fim: 4748090.94 us
+[00:00:04.748,000] <inf> os: Tempo de duração: 719737.96 us
+
+[00:00:04.768,000] <inf> os: Nome: a_tid
+[00:00:04.768,000] <inf> os: Tempo do início: 4748225.25 us
+[00:00:04.768,000] <inf> os: Tempo do fim: 4768088.88 us
+[00:00:04.768,000] <inf> os: Tempo de duração: 19729.92 us
+
+[00:00:04.788,000] <inf> os: Nome: b_tid
+[00:00:04.788,000] <inf> os: Tempo do início: 4768222.71 us
+[00:00:04.788,000] <inf> os: Tempo do fim: 4788095.44 us
+[00:00:04.788,000] <inf> os: Tempo de duração: 19732.46 us
+
+[00:00:04.808,000] <inf> os: Nome: a_tid
+[00:00:04.808,000] <inf> os: Tempo do início: 4788230.06 us
+[00:00:04.808,000] <inf> os: Tempo do fim: 4808088.94 us
+[00:00:04.808,000] <inf> os: Tempo de duração: 19725.10 us
+
+[00:00:04.828,000] <inf> os: Nome: b_tid
+[00:00:04.828,000] <inf> os: Tempo do início: 4808223.08 us
+[00:00:04.828,000] <inf> os: Tempo do fim: 4828095.69 us
+[00:00:04.828,000] <inf> os: Tempo de duração: 19732.08 us
+
+[00:00:04.839,000] <inf> os: Nome: a_tid
+[00:00:04.839,000] <inf> os: Tempo do início: 4828230.42 us
+[00:00:04.839,000] <inf> os: Tempo do fim: 4839097.83 us
+[00:00:04.839,000] <inf> os: Tempo de duração: 10725.44 us
+
+[00:00:06.339,000] <inf> os: Nome: b_tid
+[00:00:06.339,000] <inf> os: Tempo do início: 4839231.62 us
+[00:00:06.339,000] <inf> os: Tempo do fim: 6339196.08 us
+[00:00:06.339,000] <inf> os: Tempo de duração: 1499830.25 us
+
+[00:00:06.359,000] <inf> os: Nome: a_tid
+[00:00:06.359,000] <inf> os: Tempo do início: 6339328.27 us
+[00:00:06.359,000] <inf> os: Tempo do fim: 6359195.50 us
+[00:00:06.359,000] <inf> os: Tempo de duração: 19726.90 us
+
+[00:00:06.379,000] <inf> os: Nome: b_tid
+[00:00:06.379,000] <inf> os: Tempo do início: 6359328.60 us
+[00:00:06.379,000] <inf> os: Tempo do fim: 6379195.29 us
+[00:00:06.379,000] <inf> os: Tempo de duração: 19726.56 us
+
+[00:00:06.399,000] <inf> os: Nome: a_tid
+[00:00:06.399,000] <inf> os: Tempo do início: 6379327.35 us
+[00:00:06.399,000] <inf> os: Tempo do fim: 6399196.06 us
+[00:00:06.399,000] <inf> os: Tempo de duração: 19727.81 us
+
+[00:00:06.419,000] <inf> os: Nome: b_tid
+[00:00:06.419,000] <inf> os: Tempo do início: 6399322.65 us
+[00:00:06.419,000] <inf> os: Tempo do fim: 6419195.23 us
+[00:00:06.419,000] <inf> os: Tempo de duração: 19732.52 us
+
+[00:00:06.430,000] <inf> os: Nome: a_tid
+[00:00:06.430,000] <inf> os: Tempo do início: 6419335.50 us
+[00:00:06.430,000] <inf> os: Tempo do fim: 6430195.65 us
+[00:00:06.430,000] <inf> os: Tempo de duração: 10725.81 us
+
+[00:00:07.055,000] <inf> os: Nome: b_tid
+[00:00:07.055,000] <inf> os: Tempo do início: 6430329.00 us
+[00:00:07.055,000] <inf> os: Tempo do fim: 7055874.10 us
+[00:00:07.055,000] <inf> os: Tempo de duração: 625410.56 us
+
+[00:00:07.360,000] <inf> os: Nome: logging
+[00:00:07.360,000] <inf> os: Tempo do início: 7056009.04 us
+[00:00:07.360,000] <inf> os: Tempo do fim: 7360419.83 us
+[00:00:07.360,000] <inf> os: Tempo de duração: 304254.92 us
+
+[00:00:07.930,000] <inf> os: Nome: idle
+[00:00:07.930,000] <inf> os: Tempo do início: 7360561.69 us
+[00:00:07.930,000] <inf> os: Tempo do fim: 7930279.04 us
+[00:00:07.930,000] <inf> os: Tempo de duração: 569584.08 us
+
+[00:00:07.980,000] <inf> os: Nome: a_tid
+[00:00:07.980,000] <inf> os: Tempo do início: 7930418.52 us
+[00:00:07.980,000] <inf> os: Tempo do fim: 7980742.60 us
+[00:00:07.980,000] <inf> os: Tempo de duração: 50150.83 us
+
+[00:00:08.041,000] <inf> os: Nome: logging
+[00:00:08.041,000] <inf> os: Tempo do início: 7980884.83 us
+[00:00:08.042,000] <inf> os: Tempo do fim: 8041961.54 us
+[00:00:08.042,000] <inf> os: Tempo de duração: 60922.15 us
+
+[00:00:08.055,000] <inf> os: Nome: idle
+[00:00:08.055,000] <inf> os: Tempo do início: 8042102.48 us
+[00:00:08.056,000] <inf> os: Tempo do fim: 8055984.81 us
+[00:00:08.056,000] <inf> os: Tempo de duração: 13742.62 us
+
+[00:00:09.495,000] <inf> os: Nome: b_tid
+[00:00:09.495,000] <inf> os: Tempo do início: 8056111.38 us
+[00:00:09.496,000] <inf> os: Tempo do fim: 9495993.48 us
+[00:00:09.496,000] <inf> os: Tempo de duração: 1439743.81 us
+
+[00:00:09.515,000] <inf> os: Nome: a_tid
+[00:00:09.515,000] <inf> os: Tempo do início: 9496128.58 us
+[00:00:09.516,000] <inf> os: Tempo do fim: 9515995.98 us
+[00:00:09.516,000] <inf> os: Tempo de duração: 19726.58 us
+
+[00:00:09.535,000] <inf> os: Nome: b_tid
+[00:00:09.535,000] <inf> os: Tempo do início: 9516137.23 us
+[00:00:09.536,000] <inf> os: Tempo do fim: 9535996.60 us
+[00:00:09.536,000] <inf> os: Tempo de duração: 19717.94 us
+
+[00:00:09.555,000] <inf> os: Nome: a_tid
+[00:00:09.555,000] <inf> os: Tempo do início: 9536128.17 us
+[00:00:09.556,000] <inf> os: Tempo do fim: 9555996.04 us
+[00:00:09.556,000] <inf> os: Tempo de duração: 19727.00 us
+
+[00:00:09.575,000] <inf> os: Nome: b_tid
+[00:00:09.575,000] <inf> os: Tempo do início: 9556127.33 us
+[00:00:09.576,000] <inf> os: Tempo do fim: 9575996.27 us
+[00:00:09.576,000] <inf> os: Tempo de duração: 19727.83 us
+
+[00:00:09.586,000] <inf> os: Nome: a_tid
+[00:00:09.586,000] <inf> os: Tempo do início: 9576137.29 us
+[00:00:09.587,000] <inf> os: Tempo do fim: 9587006.75 us
+[00:00:09.587,000] <inf> os: Tempo de duração: 10726.85 us
+
+[00:00:11.031,000] <inf> os: Nome: b_tid
+[00:00:11.031,000] <inf> os: Tempo do início: 9587143.67 us
+[00:00:11.032,000] <inf> os: Tempo do fim: 11031975.02 us
+[00:00:11.032,000] <inf> os: Tempo de duração: 1444688.69 us
+
+[00:00:11.087,000] <inf> os: Nome: logging
+[00:00:11.087,000] <inf> os: Tempo do início: 11032110.48 us
+[00:00:11.087,000] <inf> os: Tempo do fim: 11087097.19 us
+[00:00:11.087,000] <inf> os: Tempo de duração: 54844.60 us
+
+[00:00:11.137,000] <inf> os: Nome: a_tid
+[00:00:11.137,000] <inf> os: Tempo do início: 11087233.38 us
+[00:00:11.137,000] <inf> os: Tempo do fim: 11137539.65 us
+[00:00:11.137,000] <inf> os: Tempo de duração: 50170.19 us
+
+[00:00:11.306,000] <inf> os: Nome: logging
+[00:00:11.306,000] <inf> os: Tempo do início: 11137673.94 us
+[00:00:11.306,000] <inf> os: Tempo do fim: 11306834.00 us
+[00:00:11.306,000] <inf> os: Tempo de duração: 169009.12 us
+
+[00:00:12.031,000] <inf> os: Nome: idle
+[00:00:12.032,000] <inf> os: Tempo do início: 11306959.79 us
+[00:00:12.032,000] <inf> os: Tempo do fim: 12032085.50 us
+[00:00:12.032,000] <inf> os: Tempo de duração: 724985.94 us
+
+[00:00:12.652,000] <inf> os: Nome: b_tid
+[00:00:12.652,000] <inf> os: Tempo do início: 12032212.67 us
+[00:00:12.652,000] <inf> os: Tempo do fim: 12652099.38 us
+[00:00:12.652,000] <inf> os: Tempo de duração: 619742.50 us
+
+[00:00:12.672,000] <inf> os: Nome: a_tid
+[00:00:12.672,000] <inf> os: Tempo do início: 12652225.85 us
+[00:00:12.672,000] <inf> os: Tempo do fim: 12672094.81 us
+[00:00:12.672,000] <inf> os: Tempo de duração: 19729.31 us
+
+[00:00:12.692,000] <inf> os: Nome: b_tid
+[00:00:12.692,000] <inf> os: Tempo do início: 12672221.40 us
+[00:00:12.692,000] <inf> os: Tempo do fim: 12692095.81 us
+[00:00:12.692,000] <inf> os: Tempo de duração: 19733.77 us
+
+[00:00:12.712,000] <inf> os: Nome: a_tid
+[00:00:12.712,000] <inf> os: Tempo do início: 12692231.44 us
+[00:00:12.712,000] <inf> os: Tempo do fim: 12712090.38 us
+[00:00:12.712,000] <inf> os: Tempo de duração: 19723.73 us
+
+[00:00:12.732,000] <inf> os: Nome: b_tid
+[00:00:12.732,000] <inf> os: Tempo do início: 12712225.27 us
+[00:00:12.732,000] <inf> os: Tempo do fim: 12732096.10 us
+[00:00:12.732,000] <inf> os: Tempo de duração: 19729.90 us
+
+[00:00:12.743,000] <inf> os: Nome: a_tid
+[00:00:12.743,000] <inf> os: Tempo do início: 12732237.46 us
+[00:00:12.743,000] <inf> os: Tempo do fim: 12743107.40 us
+[00:00:12.743,000] <inf> os: Tempo de duração: 10727.35 us
+
+[00:00:14.243,000] <inf> os: Nome: b_tid
+[00:00:14.243,000] <inf> os: Tempo do início: 12743250.04 us
+[00:00:14.243,000] <inf> os: Tempo do fim: 14243202.92 us
+[00:00:14.243,000] <inf> os: Tempo de duração: 1499811.83 us
+
+[00:00:14.263,000] <inf> os: Nome: a_tid
+[00:00:14.263,000] <inf> os: Tempo do início: 14243344.85 us
+[00:00:14.263,000] <inf> os: Tempo do fim: 14263197.27 us
+[00:00:14.263,000] <inf> os: Tempo de duração: 19710.31 us
+
+[00:00:14.283,000] <inf> os: Nome: b_tid
+[00:00:14.283,000] <inf> os: Tempo do início: 14263331.06 us
+[00:00:14.283,000] <inf> os: Tempo do fim: 14283190.90 us
+[00:00:14.283,000] <inf> os: Tempo de duração: 19724.10 us
+
+[00:00:14.303,000] <inf> os: Nome: a_tid
+[00:00:14.303,000] <inf> os: Tempo do início: 14283332.81 us
+[00:00:14.303,000] <inf> os: Tempo do fim: 14303192.00 us
+[00:00:14.303,000] <inf> os: Tempo de duração: 19722.35 us
+
+[00:00:14.323,000] <inf> os: Nome: b_tid
+[00:00:14.323,000] <inf> os: Tempo do início: 14303326.54 us
+[00:00:14.323,000] <inf> os: Tempo do fim: 14323197.29 us
+[00:00:14.323,000] <inf> os: Tempo de duração: 19728.62 us
+
+[00:00:14.334,000] <inf> os: Nome: a_tid
+[00:00:14.334,000] <inf> os: Tempo do início: 14323331.21 us
+[00:00:14.334,000] <inf> os: Tempo do fim: 14334222.90 us
+[00:00:14.334,000] <inf> os: Tempo de duração: 10747.90 us
+
+[00:00:15.059,000] <inf> os: Nome: b_tid
+[00:00:15.059,000] <inf> os: Tempo do início: 14334366.77 us
+[00:00:15.059,000] <inf> os: Tempo do fim: 15059943.00 us
+[00:00:15.060,000] <inf> os: Tempo de duração: 725433.15 us
+
+[00:00:15.367,000] <inf> os: Nome: logging
+[00:00:15.367,000] <inf> os: Tempo do início: 15060078.58 us
+[00:00:15.367,000] <inf> os: Tempo do fim: 15367558.58 us
+[00:00:15.367,000] <inf> os: Tempo de duração: 307320.31 us
+
+[00:00:15.834,000] <inf> os: Nome: idle
+[00:00:15.834,000] <inf> os: Tempo do início: 15367692.88 us
+[00:00:15.834,000] <inf> os: Tempo do fim: 15834280.08 us
+[00:00:15.834,000] <inf> os: Tempo de duração: 466452.85 us
+
+[00:00:15.884,000] <inf> os: Nome: a_tid
+[00:00:15.884,000] <inf> os: Tempo do início: 15834421.79 us
+[00:00:15.884,000] <inf> os: Tempo do fim: 15884747.90 us
+[00:00:15.884,000] <inf> os: Tempo de duração: 50150.81 us
+
+[00:00:15.946,000] <inf> os: Nome: logging
+[00:00:15.946,000] <inf> os: Tempo do início: 15884882.92 us
+[00:00:15.946,000] <inf> os: Tempo do fim: 15946550.12 us
+[00:00:15.946,000] <inf> os: Tempo de duração: 61510.27 us
+
+[00:00:16.059,000] <inf> os: Nome: idle
+[00:00:16.059,000] <inf> os: Tempo do início: 15946686.88 us
+[00:00:16.060,000] <inf> os: Tempo do fim: 16059980.29 us
+[00:00:16.060,000] <inf> os: Tempo de duração: 113158.98 us
+
+[00:00:17.399,000] <inf> os: Nome: b_tid
+[00:00:17.399,000] <inf> os: Tempo do início: 16060120.85 us
+[00:00:17.400,000] <inf> os: Tempo do fim: 17400000.15 us
+[00:00:17.400,000] <inf> os: Tempo de duração: 1339734.33 us
+
+[00:00:17.419,000] <inf> os: Nome: a_tid
+[00:00:17.419,000] <inf> os: Tempo do início: 17400142.12 us
+[00:00:17.420,000] <inf> os: Tempo do fim: 17419990.31 us
+[00:00:17.420,000] <inf> os: Tempo de duração: 19713.04 us
+
+[00:00:17.439,000] <inf> os: Nome: b_tid
+[00:00:17.439,000] <inf> os: Tempo do início: 17420125.44 us
+[00:00:17.440,000] <inf> os: Tempo do fim: 17439991.58 us
+[00:00:17.440,000] <inf> os: Tempo de duração: 19729.73 us
+
+[00:00:17.459,000] <inf> os: Nome: a_tid
+[00:00:17.459,000] <inf> os: Tempo do início: 17440132.02 us
+[00:00:17.460,000] <inf> os: Tempo do fim: 17459995.35 us
+[00:00:17.460,000] <inf> os: Tempo de duração: 19723.15 us
+
+[00:00:17.479,000] <inf> os: Nome: b_tid
+[00:00:17.479,000] <inf> os: Tempo do início: 17460136.83 us
+[00:00:17.480,000] <inf> os: Tempo do fim: 17479996.75 us
+[00:00:17.480,000] <inf> os: Tempo de duração: 19718.33 us
+
+[00:00:17.490,000] <inf> os: Nome: a_tid
+[00:00:17.490,000] <inf> os: Tempo do início: 17480131.54 us
+[00:00:17.491,000] <inf> os: Tempo do fim: 17491018.73 us
+[00:00:17.491,000] <inf> os: Tempo de duração: 10744.40 us
+
+[00:00:18.991,000] <inf> os: Nome: b_tid
+[00:00:18.991,000] <inf> os: Tempo do início: 17491161.54 us
+[00:00:18.991,000] <inf> os: Tempo do fim: 18991103.77 us
+[00:00:18.991,000] <inf> os: Tempo de duração: 1499800.33 us
+
+[00:00:19.011,000] <inf> os: Nome: a_tid
+[00:00:19.011,000] <inf> os: Tempo do início: 18991246.08 us
+[00:00:19.011,000] <inf> os: Tempo do fim: 19011096.04 us
+[00:00:19.011,000] <inf> os: Tempo de duração: 19709.08 us
+
+[00:00:19.031,000] <inf> os: Nome: b_tid
+[00:00:19.031,000] <inf> os: Tempo do início: 19011236.40 us
+[00:00:19.031,000] <inf> os: Tempo do fim: 19031096.40 us
+[00:00:19.031,000] <inf> os: Tempo de duração: 19718.77 us
+
+[00:00:19.051,000] <inf> os: Nome: a_tid
+[00:00:19.051,000] <inf> os: Tempo do início: 19031237.88 us
+[00:00:19.051,000] <inf> os: Tempo do fim: 19051091.56 us
+[00:00:19.051,000] <inf> os: Tempo de duração: 19717.29 us
+
+[00:00:19.071,000] <inf> os: Nome: b_tid
+[00:00:19.071,000] <inf> os: Tempo do início: 19051227.42 us
+[00:00:19.071,000] <inf> os: Tempo do fim: 19071097.44 us
+[00:00:19.071,000] <inf> os: Tempo de duração: 19727.75 us
+
+[00:00:19.082,000] <inf> os: Nome: a_tid
+[00:00:19.082,000] <inf> os: Tempo do início: 19071226.04 us
+[00:00:19.082,000] <inf> os: Tempo do fim: 19082122.46 us
+[00:00:19.082,000] <inf> os: Tempo de duração: 10754.15 us
+
+[00:00:19.087,000] <inf> os: Nome: b_tid
+[00:00:19.087,000] <inf> os: Tempo do início: 19082264.67 us
+[00:00:19.087,000] <inf> os: Tempo do fim: 19087874.10 us
+[00:00:19.087,000] <inf> os: Tempo de duração: 5466.35 us

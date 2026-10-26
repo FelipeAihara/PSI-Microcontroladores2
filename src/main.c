@@ -93,8 +93,9 @@ void thread_B(void *p1, void *p2, void *p3)
 void button_isr(const struct device *dev, struct gpio_callback *cb, uint32_t pins)
 {
     LOG_INF("Nome: Interrupcao");
-    LOG_INF("Tempo do início: %.2f us", k_uptime_get() / 48.0);
-    LOG_INF("Tempo do fim: %.2f us", k_uptime_get() / 48.0);
+    LOG_INF("Tempo do início: %.2f us", k_cycle_get_32() / 48.0);
+    for (volatile int i = 0; i < 200000; i++) {}
+    LOG_INF("Tempo do fim: %.2f us", k_cycle_get_32() / 48.0);
     LOG_INF("Tempo de duração: %.2f us\n", 0.0);
 }
 
@@ -118,6 +119,10 @@ void main(void)
     gpio_pin_configure_dt(&ledA, GPIO_OUTPUT_INACTIVE);
     gpio_pin_configure_dt(&ledB, GPIO_OUTPUT_INACTIVE);
     gpio_pin_configure_dt(&button, GPIO_INPUT | GPIO_PULL_UP);
+    
+    gpio_pin_interrupt_configure_dt(&button, GPIO_INT_EDGE_FALLING);
+    gpio_init_callback(&button_cb_data, button_isr, BIT(button.pin));
+    gpio_add_callback(button.port, &button_cb_data);
 
     printk("=== Demonstração de Preempção com LEDs ===\n");
     printk("Thread A (vermelho): prioridade %d\n", PRIO_THREAD_A);

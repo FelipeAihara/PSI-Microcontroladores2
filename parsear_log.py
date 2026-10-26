@@ -16,7 +16,7 @@ def parsear_log(nome_log):
         
         # Itera por todos os blocos do log. Separa o nome, 
         # tempo de inicio e tempo de fim de cada bloco
-        while i < len(linhas):
+        while i + 2 < len(linhas):
             linha_nome = linhas[i]
             linha_inicio = linhas[i+1]
             linha_fim = linhas[i+2]
@@ -43,7 +43,8 @@ def parsear_log(nome_log):
         while i < len(threads):
             d[threads[i]] = intervalos[i]
             i += 1
-
+        
+        print(d)
         return d
 
 def main():
