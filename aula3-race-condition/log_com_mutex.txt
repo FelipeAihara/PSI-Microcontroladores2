@@ -1,0 +1,19 @@
+coes
+
+Valor final do contador: 40
+Valor esperado:          40
+RESULTADO: OK - nenhuma atualizacao perdida
+*** Booting Zephyr OS build v4.5.0-rc3-3-g2a9e8ac155a3 ***
+
+=== Demonstracao de Race Condition (Zephyr RTOS) ===
+Modo:............. INSEGURO (sem sincronizacao)
+Threads:........... 2
+Incrementos/thread: 20
+Valor esperado:.... 40
+
+Thread A terminou suas 20 incrementacoes
+Thread B terminou suas 20 incrementacoes
+
+Valor final do contador: 40
+Valor esperado:          40
+RESULTADO: OK - nenhuma atualizacao perdida

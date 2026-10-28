@@ -1,0 +1,39 @@
+*** Booting Zephyr OS build v4.5.0-rc3-3-g2a9e8ac155a3 ***
+
+=== Demonstracao de Race Condition (Zephyr RTOS) ===
+Modo:............. INSEGURO (sem sincronizacao)
+Threads:........... 2
+Incrementos/thread: 2000
+Valor esperado:.... 4000
+
+Nome: main
+Tempo do início: 73.81 us
+Tempo do fim: 24640.71 us
+Nome: thread_a
+Tempo do início: 27271.75 us
+Tempo do fim: 75227.83 us
+Nome: thread_b
+Tempo do início: 77833.12 us
+Tempo do fim: 125208.00 us
+Nome: thread_a
+Tempo do início: 127891.54 us
+Tempo do fim: 175335.92 us
+Nome: thread_b
+Tempo do início: 178045.00 us
+Tempo do fim: 225316.33 us
+Nome: thread_a
+Tempo do início: 228025.50 us
+Tempo do fim: 259826.50 us
+Nome: main
+Tempo do início: 262509.58 us
+Tempo do fim: 266569.04 us
+Nome: thread_b
+Tempo do início: 269252.25 us
+Tempo do fim: 301746.42 us
+
+Valor final do contador: 2790
+Valor esperado:          4000
+RESULTADO: FALHA - 1210 atualizacao(oes) perdida(s) por race condition
+Nome: main
+Tempo do início: 304429.58 us
+Tempo do fim: 320275.75 us

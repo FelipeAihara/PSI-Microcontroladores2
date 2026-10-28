@@ -1,0 +1,14 @@
+*** Booting Zephyr OS build v4.5.0-rc3-3-g2a9e8ac155a3 ***
+
+=== Demonstracao de Race Condition (Zephyr RTOS) ===
+Modo:............. INSEGURO (sem sincronizacao)
+Threads:........... 2
+Incrementos/thread: 2000
+Valor esperado:.... 4000
+
+Thread A terminou suas 2000 incrementacoes
+Thread B terminou suas 2000 incrementacoes
+
+Valor final do contador: 2362
+Valor esperado:          4000
+RESULTADO: FALHA - 1638 atualizacao(oes) perdida(s) por race condition
