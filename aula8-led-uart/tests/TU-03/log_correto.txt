@@ -1,0 +1,20 @@
+LED verde ligado (intensidade 255)
+LED verde desligado
+LED verde alternado (intensidade 255)
+LED verde piscando (intensidade 255) (1 s)
+LED verde piscando (intensidade 255) (2 s)
+LED vermelho ligado (intensidade 255)
+LED vermelho desligado
+LED vermelho alternado (intensidade 255)
+LED vermelho piscando (intensidade 255) (1 s)
+LED vermelho piscando (intensidade 255) (2 s)
+LED azul ligado (intensidade 255)
+LED azul desligado
+LED azul alternado (intensidade 255)
+LED azul piscando (intensidade 255) (1 s)
+LED azul piscando (intensidade 255) (2 s)
+ID inválido
+CHECK incorreto
+Mensagem menor que a esperada // ENTRADA VAZIA
+Mensagem menor que a esperada // ENTRADA COM APENAS 5 BYTES
+Mensagem maior que a esperada // ENTRADA COM 7 BYTES 
