@@ -16,19 +16,18 @@ OBS.: como esse projeto é relativamente simples, eu pulei os testes de integra�
 - **Resultado esperado:** a placa deveria seguir o seguinte ciclo: verde - vermelho - azul - amarelo (50% vermelho e verde) - magenta (50% vermelho e azul) - ciano (50% verde e azul) - branco (100% das 3 cores) - repete
 - **Evidência:** 1 log e 1 vídeo
 
-### TU-01: fade LEDs
+### TU-02: fade LEDs
 
 - **Descrição**: testar as intensidades dos 3 LEDs
 - **Pré-condição:** placa com o código do diretório do teste, resetada e com a serial ligada
 - **Etapas:**
-  1. Rodar o comando ```bash pyserial-miniterm /dev/ttyACM0 115200 | tee log_gerado.txt```
-  2. Reiniciar a placa
+  1. Reiniciar a placa
 - **Resultado esperado:** a placa deveria fazer um fade em cada LED, seguindo a ordem verde -> vermelho -> azul
 - **Evidência:** 1 vídeo
 
 ### TU-03: UART - eco
 
-- **Descrição**: testa o funcionamento do driver UART da FRDM-KL25Z com um eco simples
+- **Descrição**: testa o funcionamento a UART da FRDM-KL25Z (usando a API interrupt-driven) com um eco simples
 - **Pré-condição:** placa com o código do diretório do teste, resetada e com a serial ligada
 - **Etapas:**
   1. Rodar o comando ```pyserial-miniterm /dev/ttyACM0 115200 | tee log_gerado.txt```

@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.20.0)
 
 find_package(Zephyr REQUIRED HINTS $ENV{ZEPHYR_BASE})
-project(TU-01)
+project(TU-02)
 
 target_sources(app PRIVATE
     src/main.cpp
