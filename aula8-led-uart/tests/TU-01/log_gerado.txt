@@ -1,0 +1,10 @@
+*** Booting Zephyr OS build v4.5.0-660-ge08106651fc7 ***
+[4] Ligando LED verde
+[1025] Ligando LED vermelho
+[2027] Ligando LED azul
+[3029] Ligando LED amarelo
+[4032] Ligando LED magenta
+[5045] Ligando LED ciano
+[6065] Ligando LED branco
+[7068] Ligando LED verde
+[8070] Ligando LED vermelho
