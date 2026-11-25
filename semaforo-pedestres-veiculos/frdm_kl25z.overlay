@@ -1,0 +1,93 @@
+/*
+ * Pinos do semáforo. A fiação é a mesma nas duas placas
+ * (ver docs/03-projeto-componentes.md, seção 1).
+ *
+ * As entradas que precisam de interrupção ficam nas portas A e D: na KL25Z só
+ * essas portas geram interrupção por pino.
+ *
+ * As placas conversam pela UART2: TX no D12 (PTD3) e RX no D11 (PTD2), ligados
+ * em cruz com a outra placa. A UART0 continua sendo o console (registro).
+ */
+
+#include <zephyr/dt-bindings/gpio/gpio.h>
+
+/* Os LEDs de pedestres ficam na porta C, que vem desabilitada */
+&gpioc {
+	status = "okay";
+};
+
+/ {
+	aliases {
+		enlace-uart = &uart2;
+	};
+
+	/*
+	 * O Zephyr não descreve a UART1 nem a UART2 da KL25Z. Este nó segue o
+	 * manual de referência do chip (UART2 em 0x4006C000, IRQ 14, relógio do
+	 * barramento com a porta no bit 12 do SIM_SCGC4), como o K32L2B3, da mesma
+	 * família, descreve a dele.
+	 */
+	soc {
+		uart2: uart@4006c000 {
+			compatible = "nxp,kinetis-uart";
+			reg = <0x4006c000 0x1000>;
+			interrupts = <14 0>;
+			interrupt-names = "status";
+			clocks = <&sim KINETIS_SIM_CLOCK(KINETIS_SIM_BUS_CLK, 0x1034, 12)>;
+			current-speed = <115200>;
+			pinctrl-0 = <&uart2_enlace>;
+			pinctrl-names = "default";
+			status = "okay";
+		};
+	};
+
+	/* Saídas: LEDs de pedestres (acendem em nível alto) */
+	saidas_semaforo {
+		compatible = "gpio-leds";
+
+		ped_vermelho: ped_vermelho {
+			gpios = <&gpioc 8 GPIO_ACTIVE_HIGH>;
+			label = "Pedestres vermelho (PTC8, D6)";
+		};
+
+		ped_verde: ped_verde {
+			gpios = <&gpioc 9 GPIO_ACTIVE_HIGH>;
+			label = "Pedestres verde (PTC9, D7)";
+		};
+	};
+
+	/* Botões: fios encostados no GND, com pull-up, ativos em nível baixo */
+	entradas_semaforo {
+		compatible = "gpio-keys";
+
+		botao_noturno: botao_noturno {
+			gpios = <&gpiod 5 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+			label = "Modo noturno, so no mestre (PTD5, D9)";
+		};
+
+		botao_travessia: botao_travessia {
+			gpios = <&gpiod 0 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+			label = "Travessia, so na escrava e na placa unica (PTD0, D10)";
+		};
+	};
+};
+
+&pinctrl {
+	/*
+	 * PTD2 e PTD3 na função ALT3 (UART2_RX e UART2_TX). O RX tem pull-up:
+	 * com o fio solto ele fica em repouso (nível alto) e não recebe nada.
+	 */
+	uart2_enlace: uart2_enlace {
+		group0 {
+			pinmux = <KINETIS_MUX('D', 2, 3)>;
+			bias-pull-up;
+			drive-strength = "low";
+			slew-rate = "slow";
+		};
+		group1 {
+			pinmux = <KINETIS_MUX('D', 3, 3)>;
+			drive-strength = "low";
+			slew-rate = "slow";
+		};
+	};
+};

@@ -4,15 +4,6 @@ Este plano detalha os testes (unitários, de integração, de sistema e de valid
 
 OBS.: como esse projeto é relativamente simples, eu pulei os testes de integração / sistema e fiz só testes unitários e de validação.
 
-### Título
-
-- **Descrição**: 
-- **Pré-condição:** 
-- **Etapas:**
-  1. 
-- **Resultado esperado:** 
-- **Evidência:** 
-
 ## 1. Testes unitários
 
 ### TU-01: LEDs
@@ -74,5 +65,3 @@ OBS.: como esse projeto é relativamente simples, eu pulei os testes de integra�
 - **Resultado esperado:** o log gerado deverá bater com o [log_correto.txt](TA-02/log_correto.txt) e os LEDs deverão seguir a sequência:
   - verde ligado -> verde desligado -> verde ligado -> verde desligado -> verde ligado
 - **Evidência:** 1 vídeo e 1 log
-
-## 4. Situação atual

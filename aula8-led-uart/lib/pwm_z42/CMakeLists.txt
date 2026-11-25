@@ -1,0 +1,1 @@
+add_dependencies(pwm_lib zephyr_generated_headers)
