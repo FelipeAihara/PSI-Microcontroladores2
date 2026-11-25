@@ -37,24 +37,18 @@ int main(void)
         // Liga o magenta
         printk("[%d] Ligando LED magenta\n", k_uptime_get_32());
         myGreenLED.write(0);
-        myRedLED.write(0);
-        myRedLED.write(255);
         myBlueLED.write(255);
         k_msleep(1000);
 
         // Liga o ciano
         printk("[%d] Ligando LED ciano\n", k_uptime_get_32());
         myRedLED.write(0);
-        myBlueLED.write(0);
-        myBlueLED.write(255);
         myGreenLED.write(255);
         k_msleep(1000);
 
         // Liga o branco
         printk("[%d] Ligando LED branco\n", k_uptime_get_32());
         myRedLED.write(255);
-        myGreenLED.write(255);
-        myBlueLED.write(255);
         k_msleep(1000);
     }
 }
