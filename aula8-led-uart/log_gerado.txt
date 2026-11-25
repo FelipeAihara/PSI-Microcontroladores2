@@ -1,0 +1,5 @@
+*** Booting Zephyr OS build v4.5.0-660-ge08106651fc7 ***
+Hello! I'm your echo bot.
+Tell me something and press enter:
+Ola mundo!
+Echo: Ola mundo!

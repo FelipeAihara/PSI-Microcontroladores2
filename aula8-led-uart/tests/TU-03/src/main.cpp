@@ -59,7 +59,7 @@ void serial_cb(const struct device *dev, void *user_data)
 /*
  * Print a null-terminated string character by character to the UART interface
  */
-void print_uart(char *buf)
+void print_uart(const char *buf)
 {
     int msg_len = strlen(buf);
 
